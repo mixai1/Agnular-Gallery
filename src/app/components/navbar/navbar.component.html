@@ -1,19 +1,24 @@
-<div class="row">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand logo">{{title}}</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav" *ngIf="(user| async)?.uid">
-                    <li><a routerLink="/gallery">Image Gallery</a></li>
-                    <li><a routerLink="/upload">Upload</a></li>
-                </ul>
-                <ul class="nav navbar-nav account">
-                    <li *ngIf="!(user|async)?.uid"><a routerLink="/login">Login</a></li>
-                    <li *ngIf="!(user|async)?.uid"><a href="#"(click)="logout()">Logout</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand logo">{{title}}</a>
         </div>
-    </nav>
-</div>
+        <div id="navbar">
+            <ul class="nav navbar-nav" *ngIf="(user| async)?.uid">
+                <li class="nav-item active"><a class="nav-link" routerLink="/gallery">Image Gallery</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/upload">Upload</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" *ngIf="!(user|async)?.uid">
+                    <a class="nav-link" routerLink="/login">Login</a>
+                </li>
+                <li class="nav-item active" *ngIf="(user|async)?.uid">
+                    <a href="#" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

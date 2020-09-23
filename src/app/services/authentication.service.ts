@@ -7,11 +7,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class AuthenticationService {
 
   private user: Observable<firebase.User>;
+  
   constructor(private afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
 
-  Login(user: User) {
+  login(user: User) {
     return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
   }
 

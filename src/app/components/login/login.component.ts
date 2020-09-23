@@ -8,7 +8,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
@@ -19,8 +19,8 @@ export class LoginComponent {
   constructor(private authSevice: AuthenticationService, private router: Router) { }
 
   singIn() {
-    this.authSevice.Login({email: this.email, password: this.password})
-      .then(resolve => this.router.navigate(['gallery']))
+    this.authSevice.login({email: this.email, password: this.password})
+      .then(()=> this.router.navigate(['/gallery']))
       .catch(erro => this.erroMsg = erro.message);
   }
 
