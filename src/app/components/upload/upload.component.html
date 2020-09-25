@@ -1,1 +1,13 @@
-<p>upload works!</p>
+<div class="continer">
+    <div *ngIf="upload">
+        <div class="progress">
+            <div class="progress-bar progress-bar-animated" [ngStyle]="{'width': upload?.progress+ '%'}"></div>
+
+        </div>
+    </div>
+    <div class="continer">
+        <h2 class="heading">UpLoad</h2>
+        <input type="file" (change)="hendleFile($event)" multiple>
+        <button class="btn btn-primary" (click)="uploadFile()">Upload images</button>
+    </div>
+</div>

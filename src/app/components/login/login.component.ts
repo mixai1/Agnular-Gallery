@@ -19,6 +19,7 @@ export class LoginComponent {
   constructor(private authSevice: AuthenticationService, private router: Router) { }
 
   singIn() {
+    console.log(this.email , this.password)
     this.authSevice.login({email: this.email, password: this.password})
       .then(()=> this.router.navigate(['/gallery']))
       .catch(erro => this.erroMsg = erro.message);

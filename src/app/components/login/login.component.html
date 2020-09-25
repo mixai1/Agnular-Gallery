@@ -7,10 +7,10 @@
             name="email" maxlength = "50" email required 
             placeholder="Email" [(ngModel)] = "email">
         </div>
-        <div>
+        <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" #passwordControle = "ngModel"
-             id="" placeholder="password" [(ngModel)] = "password" maxlength="50">
+            <input type="password" required class="form-control" #passwordControle = "ngModel" 
+            name="password" placeholder="Password" [(ngModel)] = "password" maxlength="50">
         </div>
         <button [disabled] = "!loginForm.form.valid" type="submit" 
         (click)="singIn()">Sing In</button>

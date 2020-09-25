@@ -19,7 +19,6 @@ export class ImageService {
     });
   }
 
-  //TODO: Type Error
   getImages(): any{
     return this.db.list('uploads');
   }

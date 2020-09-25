@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { AuthenticationService } from './authentication.service';
 
 
 @Injectable()
@@ -14,12 +15,11 @@ export class AuthenticationGrand implements CanActivate {
         this.user = afAuth.authState;
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        if (this.user) {
+        if (this.user != null && this.user != undefined) {
             return true;
         }
-
-        // this.router.navigate(['/login']);
-        // return false;
+        this.router.navigate(['/login']);
+        return false;
     }
 
 }
