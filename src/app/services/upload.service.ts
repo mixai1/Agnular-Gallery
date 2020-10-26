@@ -3,12 +3,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { cwd } from 'process';
+import { GalleryImage } from '../models/galleryImages.model';
 import { Upload } from '../models/upload';
 
 @Injectable()
 export class UploadService {
 
   private basePath: string = '/uploads';
+  //private uploads: FirebaseListObservable<GalleryImage[]>;
   constructor(private ngFire: AngularFireModule, private db: AngularFireDatabase) { }
 
   uploadFileSevice(upload: Upload) {
@@ -17,7 +19,7 @@ export class UploadService {
       .put(upload.file);
 
     putUploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (anapshot) => {
+      (snapshot) => {
         upload.progress = (putUploadTask.snapshot.bytesTransferred / putUploadTask.snapshot.totalBytes) * 100;
         console.log(upload.progress)
       },
@@ -25,10 +27,10 @@ export class UploadService {
         console.log(erro);
       },
 
-      () => {
+      (): any => {
         upload.url = putUploadTask.snapshot.downloadURL;
         upload.name = upload.file.name;
-        console.log("URL " + upload.url)
+        //console.log("URL " + upload.url)
         this.saveFile(upload);
       }
     );
